@@ -5,6 +5,32 @@ module.exports.toString = function () { return ".box1__box___d33e4 {\n  padding:
 module.exports = {".box":"box2__box___34119",".box:hover":"box2__box___34119:hover",".text":"box2__text___34119"}
 module.exports.toString = function () { return ".box2__box___34119 {\n  padding: 10px;\n  background: #555;\n  -webkit-transition: all 1s;\n          transition: all 1s;\n}\n\n.box2__box___34119:hover {\n  background: #933;\n}\n\n.box2__text___34119 {\n  color: #fff;\n  font-weight: bold;\n}\n"; }
 },{}],3:[function(require,module,exports){
+var box1 = require('./box1.css');
+var box2 = require('./box2.css');
+
+var h = require('hyperscript');
+
+// dynamically add the css to the browser (this could be done at build-time instead)
+var insertCss = require('insert-css');
+insertCss(box1);
+insertCss(box2);
+
+// create the markup and apply locally-scoped css classnames
+var content = h('div', [
+  h('p', 'This is a demonstration of using generic classnames in css files like `.box` and `.text`, without any danger of name collisions between components'),
+
+  h('div', { className: box1['.box'] }, [
+    h('p', { className: box1['.text'] }, 'Box 1')
+  ]),
+
+  h('div', { className: box2['.box'] }, [
+    h('p', { className: box2['.text'] }, 'Box 2')
+  ])
+]);
+
+document.getElementById('content').appendChild(content);
+
+},{"./box1.css":1,"./box2.css":2,"hyperscript":4,"insert-css":8}],4:[function(require,module,exports){
 var split = require('browser-split')
 var ClassList = require('class-list')
 require('html-element')
@@ -151,7 +177,7 @@ function isArray (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]'
 }
 
-},{"browser-split":4,"class-list":5,"html-element":8}],4:[function(require,module,exports){
+},{"browser-split":5,"class-list":6,"html-element":9}],5:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -259,7 +285,7 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 // contains, add, remove, toggle
 var indexof = require('indexof')
 
@@ -360,7 +386,7 @@ function isTruthy(value) {
     return !!value
 }
 
-},{"indexof":6}],6:[function(require,module,exports){
+},{"indexof":7}],7:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
@@ -371,7 +397,7 @@ module.exports = function(arr, obj){
   }
   return -1;
 };
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var inserted = {};
 
 module.exports = function (css, options) {
@@ -395,32 +421,6 @@ module.exports = function (css, options) {
     }
 };
 
-},{}],8:[function(require,module,exports){
-
 },{}],9:[function(require,module,exports){
-var box1 = require('./box1.css');
-var box2 = require('./box2.css');
 
-var h = require('hyperscript');
-
-// dynamically add the css to the browser (this could be done at build-time instead)
-var insertCss = require('insert-css');
-insertCss(box1);
-insertCss(box2);
-
-// create the markup and apply locally-scoped css classnames
-var content = h('div', [
-  h('p', 'This is a demonstration of using generic classnames in css files like `.box` and `.text`, without any danger of name collisions between components'),
-
-  h('div', { className: box1['.box'] }, [
-    h('p', { className: box1['.text'] }, 'Box 1')
-  ]),
-
-  h('div', { className: box2['.box'] }, [
-    h('p', { className: box2['.text'] }, 'Box 2')
-  ])
-]);
-
-document.getElementById('content').appendChild(content);
-
-},{"./box1.css":1,"./box2.css":2,"hyperscript":3,"insert-css":7}]},{},[9]);
+},{}]},{},[3]);
