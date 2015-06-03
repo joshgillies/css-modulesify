@@ -1,9 +1,9 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports = {".box":"box1__box___d33e4",".text":"box1__text___d33e4"}
-module.exports.toString = function () { return ".box1__box___d33e4 {\n  padding: 10px;\n  border: 1px dotted #000;\n}\n\n.box1__text___d33e4 {\n  font-style: italic;\n}\n"; }
+module.exports = {"box":"_box1__box _borders__dottyBorder","text":"_box1__text"}
+module.exports.toString = function () { return "\n._borders__dottyBorder {\n  border: 1px dotted #000;\n}\n\n\n._box1__box {\n  padding: 10px;\n}\n\n._box1__text {\n  font-style: italic;\n}\n"; }
 },{}],2:[function(require,module,exports){
-module.exports = {".box":"box2__box___34119",".box:hover":"box2__box___34119:hover",".text":"box2__text___34119"}
-module.exports.toString = function () { return ".box2__box___34119 {\n  padding: 10px;\n  background: #555;\n  -webkit-transition: all 1s;\n          transition: all 1s;\n}\n\n.box2__box___34119:hover {\n  background: #933;\n}\n\n.box2__text___34119 {\n  color: #fff;\n  font-weight: bold;\n}\n"; }
+module.exports = {"box":"_box2__box","text":"_box2__text"}
+module.exports.toString = function () { return "\n._box2__box {\n  padding: 10px;\n  background: #555;\n  transition: all 1s;\n}\n\n:local(.box):hover {\n  background: #933;\n}\n\n._box2__text {\n  color: #fff;\n  font-weight: bold;\n}\n"; }
 },{}],3:[function(require,module,exports){
 var box1 = require('./box1.css');
 var box2 = require('./box2.css');
@@ -19,12 +19,12 @@ insertCss(box2);
 var content = h('div', [
   h('p', 'This is a demonstration of using generic classnames in css files like `.box` and `.text`, without any danger of name collisions between components'),
 
-  h('div', { className: box1['.box'] }, [
-    h('p', { className: box1['.text'] }, 'Box 1')
+  h('div', { className: box1.box }, [
+    h('p', { className: box1.text }, 'Box 1')
   ]),
 
-  h('div', { className: box2['.box'] }, [
-    h('p', { className: box2['.text'] }, 'Box 2')
+  h('div', { className: box2.box }, [
+    h('p', { className: box2.text }, 'Box 2')
   ])
 ]);
 
